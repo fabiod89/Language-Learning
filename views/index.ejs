@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <!-- Language Selection Modal -->
     <div id="languageModal" class="modal">
         <div class="modal-content">
             <h2>Choose Your Language</h2>
@@ -17,14 +16,13 @@
                 <button data-lang="German">German</button>
                 <button data-lang="Italian">Italian</button>
                 <button data-lang="Japanese">Japanese</button>
-                <button data-lang="Mandarin">Mandarin</button>
+                <button data-lang="Portuguese (BR)">Portuguese</button>
                 <button data-lang="Korean">Korean</button>
-                <button data-lang="Khmer">Khmer</button>
+                <button data-lang="Khmer">Khmer (Cambodian)</button>
             </div>
         </div>
     </div>
 
-    <!-- Main App Content -->
     <div id="appContent" class="hidden">
         <header>
             <h1>Language Learning</h1>
@@ -34,7 +32,14 @@
         <main>
             <div class="phrase-container">
                 <h2>Phrase to Translate</h2>
-                <div class="phrase-text" id="languageOutput"></div>
+                <div class="phrase-text">
+                    <span id="languageOutput"></span>
+                    <button id="ttsButton" class="tts-button" title="Play pronunciation">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <div class="feedback-container">
