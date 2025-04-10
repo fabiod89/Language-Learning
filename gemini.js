@@ -42,7 +42,7 @@ const {
   async function sendMessage(chatSession, userMessage) {
     try {
       const result = await chatSession.sendMessage(userMessage);
-      return JSON.parse(result.response.text());
+      return JSON.parse(result.response.text()); 
     } catch (error) {
       console.error('Error in sendMessage:', error);
       throw new Error('Failed to process message');

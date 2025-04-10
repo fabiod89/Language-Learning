@@ -15,7 +15,7 @@ body {
     line-height: 1.6;
 }
 
-/* Language Modal Styles */
+/* Language Modal */
 .modal {
     display: flex;
     position: fixed;
@@ -55,6 +55,10 @@ body {
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .language-options button:hover {
@@ -104,8 +108,37 @@ header {
     background-color: var(--secondary-color);
     border-radius: var(--border-radius);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+/* TTS Button Styles */
+.tts-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    vertical-align: middle;
+    transition: all 0.3s;
+}
+
+.tts-button svg {
+    fill: var(--primary-color);
+    transition: fill 0.3s;
+}
+
+.tts-button:hover svg {
+    fill: #3367d6;
+}
+
+.tts-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Feedback and Memory */
 .feedback-container {
     background: white;
     padding: 20px;
@@ -151,6 +184,7 @@ header {
     border-bottom: 1px solid #eee;
 }
 
+/* Input Area */
 .input-container {
     position: fixed;
     bottom: 0;
@@ -192,6 +226,7 @@ button:hover {
     background: #3367d6;
 }
 
+/* Responsive Design */
 @media (max-width: 600px) {
     body {
         padding: 15px;
@@ -208,5 +243,8 @@ button:hover {
     button {
         padding: 12px 15px;
     }
+    
+    .language-options {
+        grid-template-columns: 1fr;
+    }
 }
-
