@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning Assistant</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <h2>Choose Your Language</h2>
+            <div class="language-options">
+                <button data-lang="French">French</button>
+                <button data-lang="Spanish">Spanish</button>
+                <button data-lang="German">German</button>
+                <button data-lang="Italian">Italian</button>
+                <button data-lang="Japanese">Japanese</button>
+                <button data-lang="Mandarin">Mandarin</button>
+                <button data-lang="Korean">Korean</button>
+                <button data-lang="Khmer">Khmer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App Content -->
+    <div id="appContent" class="hidden">
+        <header>
+            <h1>Language Learning</h1>
+            <div class="level-indicator">Level: <span id="level">1</span></div>
+        </header>
+
+        <main>
+            <div class="phrase-container">
+                <h2>Phrase to Translate</h2>
+                <div class="phrase-text" id="languageOutput"></div>
+            </div>
+
+            <div class="feedback-container">
+                <h3>Feedback</h3>
+                <div class="feedback-content" id="feedback"></div>
+            </div>
+
+            <div class="memory-container">
+                <h3>Progress Tracking</h3>
+                <ul class="memory-list" id="memoryList"></ul>
+            </div>
+        </main>
+
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your translation here..." autofocus />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
