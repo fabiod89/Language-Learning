@@ -5,20 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Language Learning Assistant</title>
     <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <div id="languageModal" class="modal">
         <div class="modal-content">
             <h2>Choose Your Language</h2>
             <div class="language-options">
-                <button data-lang="French">French</button>
-                <button data-lang="Spanish">Spanish</button>
-                <button data-lang="German">German</button>
-                <button data-lang="Italian">Italian</button>
-                <button data-lang="Japanese">Japanese</button>
-                <button data-lang="Portuguese (BR)">Portuguese</button>
-                <button data-lang="Korean">Korean</button>
-                <button data-lang="Khmer">Khmer (Cambodian)</button>
+                <!-- Note: Language codes MUST match flag-icon classes -->
+                <button data-lang="fr">
+                    <span class="flag-icon flag-icon-fr"></span>
+                    French
+                </button>
+                <button data-lang="es">
+                    <span class="flag-icon flag-icon-es"></span>
+                    Spanish
+                </button>
+                <button data-lang="de">
+                    <span class="flag-icon flag-icon-de"></span>
+                    German
+                </button>
+                <button data-lang="it">
+                    <span class="flag-icon flag-icon-it"></span>
+                    Italian
+                </button>
+                <button data-lang="jp">
+                    <span class="flag-icon flag-icon-jp"></span>
+                    Japanese
+                </button>
+                <button data-lang="br">
+                    <span class="flag-icon flag-icon-br"></span>
+                    Portuguese
+                </button>
+                <button data-lang="kr">
+                    <span class="flag-icon flag-icon-kr"></span>
+                    Korean
+                </button>
+                <button data-lang="kh">
+                    <span class="flag-icon flag-icon-kh"></span>
+                    Khmer
+                </button>
             </div>
         </div>
     </div>
