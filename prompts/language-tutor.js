@@ -1,11 +1,67 @@
-module.exports = (language) => {
-  // 1. Define the SCHEMA (for both Gemini and human readability)
+module.exports = (languageCode) => {
+  // 1. Language Configuration
+  const languages = {
+    fr: {
+      name: "French",
+      beginner: "Bonjour",
+      intermediate: "Je voudrais un café"
+    },
+    es: {
+      name: "Spanish",
+      beginner: "Hola",
+      intermediate: "¿Dónde está el baño?"
+    },
+    de: {
+      name: "German",
+      beginner: "Hallo",
+      intermediate: "Ich möchte bezahlen"
+    },
+    it: {
+      name: "Italian",
+      beginner: "Ciao",
+      intermediate: "Quanto costa questo?"
+    },
+    jp: {
+      name: "Japanese",
+      beginner: "こんにちは",
+      intermediate: "これはいくらですか？"
+    },
+    br: {
+      name: "Portuguese",
+      beginner: "Olá",
+      intermediate: "Quanto custa isso?"
+    },
+    kr: {
+      name: "Korean",
+      beginner: "안녕하세요",
+      intermediate: "이것은 얼마입니까?"
+    },
+    kh: {
+      name: "Khmer",
+      beginner: "ជំរាបសួរ",
+      intermediate: "តើវាមានតម្លៃប៉ុន្មាន?"
+    }
+  };
+
+  const lang = languages[languageCode] || languages.fr;
+
+  // 2. Schema Definition
   const schema = {
     type: "object",
     properties: {
-      Level: { type: "integer", minimum: 1, maximum: 100 },
-      Language_Output: { type: "string" },
-      Feedback: { type: "string" },
+      Level: { 
+        type: "integer", 
+        minimum: 1, 
+        maximum: 100 
+      },
+      Language_Output: { 
+        type: "string",
+        description: `Phrase in ${lang.name} ONLY (no translations)`
+      },
+      Feedback: { 
+        type: "string",
+        description: "Clear English feedback for the learner"
+      },
       memory: { 
         type: "array",
         items: { 
@@ -17,57 +73,47 @@ module.exports = (language) => {
     required: ["Level", "Language_Output", "Feedback", "memory"]
   };
 
-  // 2. Language-specific examples (real JSON objects)
-  const examples = {
-    french: [
-      {
-        Level: 1,
-        Language_Output: "Bonjour",
-        Feedback: "Translate this basic greeting",
-        memory: []
-      },
-      {
-        Level: 5,
-        Language_Output: "Je mange une pomme",
-        Feedback: "⚠️ 'une pomme' (feminine) not 'un pomme'",
-        memory: ["Struggling: gender articles"]
-      }
-    ],
-    japanese: [
-      {
-        Level: 1,
-        Language_Output: "こんにちは",
-        Feedback: "Romaji not allowed - translate this",
-        memory: []
-      },
-      {
-        Level: 15,
-        Language_Output: "昨日、寿司を食べました",
-        Feedback: "✅ Perfect past tense!",
-        memory: ["Mastered: past tense"]
-      }
-    ]
-  };
-
-  // 3. The actual prompt
+  // 3. Prompt Template
   return `
-You are a ${language} tutor. Follow these rules:
+You are teaching ${lang.name}. Follow STRICTLY:
 
-### SCHEMA (STRICT):
+### CORE RULES:
+1. FIRST MESSAGE: Always start with: "${lang.beginner}"
+2. LANGUAGE PURITY:
+   - NEVER mix languages
+   - ${lang.name} ONLY in Language_Output
+   - English ONLY in Feedback
+3. PROGRESSION:
+   - Level up after 3 correct answers
+   - Level down after 2 mistakes
+4. MEMORY TRACKING:
+   - "Struggling: [issue]" (2+ errors)
+   - "Mastered: [concept]" (3+ correct)
+   - "Watch: [pattern]" (emerging issue)
+
+### RESPONSE FORMAT:
 ${JSON.stringify(schema, null, 2)}
 
-### RULES:
-1. Start at Level 1 with simple words
-2. Adjust level every 3 correct/2 wrong answers
-3. Memory entries must follow:
-   - "Struggling: [concept]" (repeated mistakes)
-   - "Mastered: [concept]" (3+ correct uses)
-   - "Watch: [pattern]" (grammar issues)
+### EXAMPLE SESSION:
+User: "START"
+{
+  "Level": 1,
+  "Language_Output": "${lang.beginner}",
+  "Feedback": "Translate this greeting to English",
+  "memory": []
+}
 
-### EXAMPLES (${language}):
-${JSON.stringify(examples[language.toLowerCase()] || examples.french, null, 2)}
+User: "Hello"
+{
+  "Level": 1,
+  "Language_Output": "${lang.intermediate}",
+  "Feedback": "⚠️ Careful with word order in ${lang.name}",
+  "memory": ["Watch: sentence structure"]
+}
 
-### OUTPUT:
-Generate ONLY JSON matching the schema above.
+### STRICT REQUIREMENTS:
+- ALWAYS use the schema above
+- NEVER provide direct translations
+- Feedback should be actionable
 `;
 };
